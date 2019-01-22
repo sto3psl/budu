@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/sto3psl/budu/issues"
   },
-  "homepage": "https://github.com/sto3psl/budu#readme"
+  "homepage": "https://github.com/sto3psl/budu#readme",
+  "devDependencies": {
+    "parcel": "^1.11.0"
+  }
 }

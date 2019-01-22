@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Budu Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    #playground {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    #playground div {
+      --size: 10px;
+
+      margin: 2px;
+      background: rebeccapurple;
+      width: var(--size);
+      height: var(--size);
+    }
+  </style>
+</head>
+<body>
+  <input type="number" id="elements" value='1000'>
+  <button id='default'>Default</button>
+  <button id='budu'>Budu</button>
+  <div id="playground"></div>
+
+  <script src="main.js"></script>
+</body>
+</html>

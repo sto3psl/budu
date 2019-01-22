@@ -1,6 +1,6 @@
 {
   "name": "budu",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Library to batch DOM reads and writes.",
   "main": "index.js",
   "scripts": {

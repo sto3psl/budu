@@ -12,6 +12,7 @@
     ]
   },
   "scripts": {
+    "prepublishOnly": "npm test && npm run build",
     "format": "prettier {src,demo}/**/*.js --write && standard '{src,demo}/**/*.js' --fix",
     "lint": "standard '{src,demo}/**/*.js'",
     "build": "microbundle --strict",

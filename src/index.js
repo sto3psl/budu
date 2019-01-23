@@ -1,5 +1,5 @@
-let batch = [];
-let isRunning = false;
+let batch = []
+let isRunning = false
 
 /**
  * With `schedule` you can add a task to budu's batch that will execute with all the other tasks
@@ -17,23 +17,36 @@ let isRunning = false;
  * This function should always return a value which get's passed into `task.update`.
  * @param {function} task.update - Function to update DOM attributes. It get's called with the returned value from `task.measure`.
  */
-export default function schedule (task) {
-    batch.push(task);
+export default function schedule(task) {
+  batch.push(task)
 
-    if (isRunning) return;
+  if (isRunning) return
 
-    isRunning = true;
-    window.requestAnimationFrame(runBatch);
+  isRunning = true
+  requestAnimationFrame(runBatch)
 }
 
 /**
  *  Functions that first calls all `measure` functions and all `update` functions after that.
  *
  */
-function runBatch () {
-    if (!batch.length) return;
-    const values = batch.map(task => task.measure());
-    batch.forEach((task, i) => task.update && task.update(values[i]));
-    batch = [];
-    isRunning = false;
+function runBatch() {
+  if (!batch.length) return
+
+  const values = batch.map(task => {
+    try {
+      return task.measure && task.measure()
+    } catch (error) {
+      return error
+    }
+  })
+
+  batch.forEach((task, i) => {
+    try {
+      task.update && task.update(values[i])
+    } catch (error) {}
+  })
+
+  batch = []
+  isRunning = false
 }

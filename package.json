@@ -18,8 +18,9 @@
     "build": "microbundle --strict",
     "dev": "microbundle watch",
     "test": "ava --verbose",
-    "build:docs": "parcel build docs/index.html",
-    "now-build": "npm run build:docs"
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs && mv docs/.vuepress/dist dist",
+    "now-build": "npm run docs:build"
   },
   "standard": {
     "env": [
@@ -78,6 +79,7 @@
     "raf": "^3.4.1",
     "sinon": "^7.2.3",
     "standard": "^12.0.1",
-    "tap-xunit": "^2.3.0"
+    "tap-xunit": "^2.3.0",
+    "vuepress": "^0.14.8"
   }
 }

@@ -1,4 +1,8 @@
-# budu [![CircleCI](https://circleci.com/gh/sto3psl/budu.svg?style=svg)](https://circleci.com/gh/sto3psl/budu)
+---
+title: Home
+---
+
+# budu.js ![CircleCI](https://circleci.com/gh/sto3psl/budu.svg?style=svg)
 
 > Handle a **bu**nch of **D**OM **up**dates.
 >
@@ -26,9 +30,11 @@ import schedule from 'budu'
 const schedule = require('budu')
 ```
 
-> `budu` uses `window.requestAnimationFrame` to schedule measurement and updates. Some older browsers don't support this API. You can still use `budu` by using a polyfill for `requestAnimationFrame` like [`raf/polyfill`](https://www.npmjs.com/package/raf).
->
-> To see if the browser you want to support implements `requestAnimationFrame`, follow this link -> [Can I Use](https://caniuse.com/#feat=requestanimationframe).
+::: warning
+`budu` uses `window.requestAnimationFrame` to schedule measurement and updates. Some older browsers don't support this API. You can still use `budu` by using a polyfill for `requestAnimationFrame` like [`raf/polyfill`](https://www.npmjs.com/package/raf).
+
+To see if the browser you want to support implements `requestAnimationFrame`, follow this link -> [Can I Use](https://caniuse.com/#feat=requestanimationframe).
+:::
 
 ## API
 

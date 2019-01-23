@@ -1,4 +1,4 @@
-import schedule from "../src";
+import schedule from '../src'
 
 const reflow = document.querySelector('.reflow')
 
@@ -31,12 +31,10 @@ function updateDefault () {
 function updateBudu () {
   const elements = Array.from(reflow.querySelectorAll('.playground div'))
   elements.forEach(el => {
-
     schedule({
       measure: () => el.getBoundingClientRect().width,
-      update: size =>  el.style.setProperty('--size', `${size * 1.5}px`)
+      update: size => el.style.setProperty('--size', `${size * 1.5}px`)
     })
-
   })
 }
 
@@ -52,7 +50,7 @@ const animationPlayground = animate.querySelector('.playground')
 const animDefaultButton = animate.querySelector('.default')
 const animBuduButton = animate.querySelector('.budu')
 
- animationPlayground.innerHTML = ''
+animationPlayground.innerHTML = ''
 for (let index = 0; index <= 200; index++) {
   animationPlayground.appendChild(document.createElement('div'))
 }
@@ -77,7 +75,7 @@ function animation () {
         measure: () => {
           return el.style.left ? +getComputedStyle(el).left.slice(0, -2) : 0
         },
-        update: (val) => {
+        update: val => {
           const x = val < 500 ? val + Math.random() * 2 : 0
 
           el.style.left = x + 'px'
@@ -97,5 +95,3 @@ animBuduButton.addEventListener('click', () => {
 })
 
 animation()
-
-

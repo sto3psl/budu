@@ -17,7 +17,7 @@ let isRunning = false
  * This function should always return a value which get's passed into `task.update`.
  * @param {function} task.update - Function to update DOM attributes. It get's called with the returned value from `task.measure`.
  */
-export default function schedule(task) {
+export default function schedule (task) {
   batch.push(task)
 
   if (isRunning) return
@@ -30,7 +30,7 @@ export default function schedule(task) {
  *  Functions that first calls all `measure` functions and all `update` functions after that.
  *
  */
-function runBatch() {
+function runBatch () {
   if (!batch.length) return
 
   const values = batch.map(task => {

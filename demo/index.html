@@ -15,14 +15,29 @@
       margin: 0;
     }
 
-    #playground {
+    .reflow .playground {
       display: flex;
       flex-wrap: wrap;
+      margin-bottom: 100px;
     }
 
-    #playground div {
+    .reflow .playground div {
       --size: 10px;
 
+      margin: 2px;
+      background: rebeccapurple;
+      width: var(--size);
+      height: var(--size);
+    }
+
+    .animate .playground {
+
+    }
+
+    .animate .playground div {
+      --size: 5px;
+
+      position: absolute;
       margin: 2px;
       background: rebeccapurple;
       width: var(--size);
@@ -31,10 +46,18 @@
   </style>
 </head>
 <body>
-  <input type="number" id="elements" value='1000'>
-  <button id='default'>Default</button>
-  <button id='budu'>Budu</button>
-  <div id="playground"></div>
+  <div class="reflow">
+    <input type="number" id="elements" value='1000'>
+    <button class='default'>Default</button>
+    <button class='budu'>Budu</button>
+    <div class="playground"></div>
+  </div>
+
+  <div class="animate">
+      <button class='default'>Default</button>
+      <button class='budu'>Budu</button>
+      <div class="playground"></div>
+  </div>
 
   <script src="main.js"></script>
 </body>

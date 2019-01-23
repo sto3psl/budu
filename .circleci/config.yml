@@ -4,7 +4,7 @@ defaults: &defaults
     - image: circleci/node:10
 
 cache: &cache
-    key: v1-dependency-cache-{{ checksum "package-lock.json" }}
+    key: v2-yarn-packages-{{ checksum "yarn.lock" }}
 
 version: 2
 jobs:
@@ -15,7 +15,7 @@ jobs:
       - restore_cache:
           <<: *cache
 
-      - run: npm ci
+      - run: yarn install --frozen-lockfile
 
       - save_cache:
           <<: *cache
@@ -31,7 +31,7 @@ jobs:
       - run:
           command: |
             mkdir -p ~/reports/ava
-            npm test -- --tap | npx tap-xunit > ~/reports/ava/results.xml
+            yarn test -- --tap | npx tap-xunit > ~/reports/ava/results.xml
       - store_test_results:
           path: ~/reports
       - store_artifacts:
@@ -44,7 +44,7 @@ jobs:
       - restore_cache:
           <<: *cache
 
-      - run: npm run lint
+      - run: yarn lint
 
   publish:
     <<: *defaults

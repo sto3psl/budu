@@ -34,7 +34,7 @@
     "singleQuote": true
   },
   "name": "budu",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Library to batch DOM reads and writes, reducing layout jank and getting a better performance for animations.",
   "main": "lib/budu.js",
   "umd:main": "lib/budu.umd.js",

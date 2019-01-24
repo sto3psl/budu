@@ -4,7 +4,7 @@
 ![Size](https://img.shields.io/bundlephobia/min/budu.svg?style=for-the-badge)
 ![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=for-the-badge)
 
-> Handle a **bu**nch of **D**OM **up**dates.
+> Handle a **bu**nch of **D**OM **u**pdates.
 >
 > Don't let the browser throw away the hard work it has done for you.
 

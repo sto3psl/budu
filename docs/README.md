@@ -8,11 +8,11 @@ title: Home
 ![Size](https://img.shields.io/bundlephobia/min/budu.svg?style=for-the-badge)
 ![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=for-the-badge)
 
-> A **bu**nch of **D**OM **up**dates.
+> A **bu**nch of **D**OM **u**pdates.
 >
 > Don't let the browser throw away the hard work it has done for you.
 
-Library to batch DOM reads and writes, reducing layout jank and getting a better performance for animations or layout reflows.
+Library to batch DOM reads and writes to reduce layout thrashing and getting a better performance for animations, visualisations or layout reflows.
 
 [Why should I care?](https://developers.google.com/web/fundamentals/performance/rendering/avoid-large-complex-layouts-and-layout-thrashing)
 
@@ -62,7 +62,7 @@ This was a lot to read, now let's see an example! Press the `▶️ Start` butto
 
 While the animation runs, click on `🐇 Scheduled` to see the animation run super smooth. Now all reads happen before all writes.
 
-<iframe src="https://csb-5z30qplvzk-whemxorrqf.now.sh/" style="width:100%; height:450px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe src="https://csb-5z30qplvzk-mejhkzrelv.now.sh/" style="width:100%; height:450px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 ::: warning Be careful
 Before rewriting all your code, please actually measure if it has an impact on performance. The default browser behaviour is usually fine.

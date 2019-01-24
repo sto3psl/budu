@@ -64,11 +64,15 @@ While the animation runs, click on `🐇 Scheduled` to see the animation run sup
 
 <iframe src="https://csb-5z30qplvzk-mejhkzrelv.now.sh/" style="width:100%; height:450px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
+::: tip Play around with the example on CodeSandbox
+[https://codesandbox.io/s/5z30qplvzk](https://codesandbox.io/s/5z30qplvzk)
+:::
+
 ::: warning Be careful
 Before rewriting all your code, please actually measure if it has an impact on performance. The default browser behaviour is usually fine.
 :::
 
-Now you might say "This looks simple, it's just 2 loops" and that is correct. In a large app or visualisation, you might update styles in a lot of places and rewriting that call everything in badges is a hassle. This is where `budu` comes into play. Call `budu`s `schedule` function and it will coordinate all layout reads and writes in your app so you don't have to care about it. The above code example in `budu` looks like this:
+Now you might say "This looks simple, it's just 2 loops" and that is correct. In a large app or visualisation, you might update styles in a lot of places and rewriting all these calls to execute in batches is a hassle. This is where `budu` comes into play. Call `budu`s `schedule` function and it will coordinate all layout reads and writes in your app so you don't have to care about it. The above code example in `budu` looks like this:
 
 ```js
 import schedule from 'budu'

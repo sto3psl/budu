@@ -18,7 +18,7 @@ Library to batch DOM reads and writes to reduce layout thrashing and getting a b
 
 > When you change styles the browser checks to see if any of the changes require layout to be calculated, and for that render tree to be updated. Changes to “geometric properties”, such as widths, heights, left, or top all require layout.
 
-In data visualisation or for animation, a developer might want to update a lot of elements. This can be done with the following code:
+In data visualisation or for animation, a developer might want to update a lot of elements. This is possible with the following code:
 
 ```js
 // let's assume elements is an array of 100 divs we want to animate
@@ -30,13 +30,13 @@ elements.forEach(el => {
 })
 ```
 
-*This is inefficient since it forces synchronous layout updates.* Every time the `left` style of an element gets updated, the browser has to recalculate the layout before the next call to `getBoundingClientRect`, triggering the following flow:
+*This is inefficient as it forces synchronous layout updates.* Every time the `left` style of an element gets updated, the browser has to recalculate the layout before the next call to `getBoundingClientRect`, triggering the following flow:
 
 ::: danger A lot of work
 read > update > **layout** > read > update > **layout** > read > update > **layout** > read > ...
 :::
 
-Now we have a performance bottleneck. To mitigate the problem, it is better to first read all values and after that modify the DOM. Therefore the browser doesn't have to recalculate layout that much and we get a flow similar to this:
+That leads to a performance bottleneck. To mitigate the problem, it is better to first read all values and after that modify the DOM. Therefore, the browser doesn't have to recalculate layout that much and we get a flow similar to this:
 
 ::: tip Less work
 read > read > read > update > update > update > **layout**
@@ -69,10 +69,10 @@ While the animation runs, click on `🐇 Scheduled` to see the animation run sup
 :::
 
 ::: warning Be careful
-Before rewriting all your code, please actually measure if it has an impact on performance. The default browser behaviour is usually fine.
+Before rewriting all your code, please actually measure if layout is the problem. The default browser behaviour is usually fine.
 :::
 
-Now you might say "This looks simple, it's just 2 loops" and that is correct. In a large app or visualisation, you might update styles in a lot of places and rewriting all these calls to execute in batches is a hassle. This is where `budu` comes into play. Call `budu`s `schedule` function and it will coordinate all layout reads and writes in your app so you don't have to care about it. The above code example in `budu` looks like this:
+You might say "This looks simple, it's 2 loops" and that is correct. In a large app or visualisation, you might update styles in a lot of places. Rewriting all these calls, to execute in batches, is a hassle. This is where `budu` comes into play. Call `budu`s `schedule` function and it will coordinate all layout reads and writes in your app for you. The above code example in `budu` looks like this:
 
 ```js
 import schedule from 'budu'
@@ -80,7 +80,7 @@ import schedule from 'budu'
 elements.forEach(el => {
   schedule({
     measure: () => el.getBoundingClientRect()
-    // the return value of `measure()` will be provided in `update()`
+    // the return value of `measure()` is available in `update()`
     update: bounds => { el.style.left = bounds.x + 10 }
   })
 })
@@ -88,7 +88,7 @@ elements.forEach(el => {
 
 ### Performance Analysis
 
-This visualises the work the browser has to do for 1s of the above animation with forced synchronous layout calls and `budu`. Screenshots taken with Chrome Devtools.
+The screenshots visualise the work the browser has to do, to animate the example above. Screenshots taken with Chrome Devtools. 
 
 #### Default browser behaviour (forced synchronous layout)
 ![Performance graph with default browser behaviour](./assets/default.png)
@@ -108,7 +108,7 @@ To use `budu` install it with `npm` or `yarn` as follows.
 > yarn install budu
 ```
 
-After that you can import or require it from your source files.
+After that you can `import` or `require` it from your source files.
 
 ```js
 import schedule from 'budu'
@@ -142,7 +142,7 @@ schedule({
 
 ---
 
-I created this mini library to make it easier to create performant data visualisations and I learned a lot from the following articles and libraries:
+I made this mini library to simplify creating performant data visualisations. I learned a lot and took inspiration from the following articles and libraries:
 
 * [Browser Rendering Optimizations for Frontend Development](https://scotch.io/tutorials/browser-rendering-optimizations-for-frontend-development)
 * [Avoid Large, Complex Layouts and Layout Thrashing](https://developers.google.com/web/fundamentals/performance/rendering/avoid-large-complex-layouts-and-layout-thrashing)

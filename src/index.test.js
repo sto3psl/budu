@@ -1,6 +1,9 @@
 import test from 'ava'
 import schedule from './index'
 import sinon from 'sinon'
+import callSchedule from '../fixtures/test-1'
+import callSchedule2 from '../fixtures/test-2'
+
 global.requestAnimationFrame = require('raf')
 
 test.before(t => {
@@ -101,4 +104,14 @@ test('errors should get catched', t => {
   t.context.clock.runAll()
   t.is(calls[4], 'boom', 'The error was not caught in measure')
   t.deepEqual(calls, [1, 2, 4, 3, 'boom', 5])
+})
+
+test('should work when called from more than 1 file', t => {
+  const calls = []
+
+  callSchedule(calls)
+  callSchedule2(calls)
+
+  t.context.clock.runAll()
+  t.deepEqual(calls, ['measure-1', 'measure-2', 'update-1', 'update-2'])
 })

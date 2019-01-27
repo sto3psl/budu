@@ -1,4 +1,5 @@
 ---
+home: true
 title: Home
 ---
 
@@ -62,7 +63,7 @@ This was a lot to read, now let's see an example! Press the `▶️ Start` butto
 
 While the animation runs, click on `🐇 Scheduled` to see the animation run super smooth. Now all reads happen before all writes.
 
-<iframe src="https://csb-5z30qplvzk-mejhkzrelv.now.sh/" style="width:100%; height:450px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe src="https://csb-5z30qplvzk-mejhkzrelv.now.sh/" style="width:100%; height:600px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 ::: tip Play around with the example on CodeSandbox
 [https://codesandbox.io/s/5z30qplvzk](https://codesandbox.io/s/5z30qplvzk)
@@ -124,10 +125,12 @@ To see if the browser you want to support implements `requestAnimationFrame`, fo
 
 ## API
 
+`budu.js` provides a default export, which is a function, and nothing else. This function takes an object as only argument, which is used to register a `measure` and `update` pair.
+
 ```js
 import schedule from 'budu'
 
-schedule({
+const task = {
   measure: () => {
     // call all your expensive DOM reads here
     const bounds = element.getBoundingClientRect()
@@ -137,8 +140,20 @@ schedule({
     // write to the DOM in here
     element.style.left = bounds.x + 20 + 'px'
   }
-})
+}
+
+schedule(task)
 ```
+
+### `function measure () : any`
+
+The `measure` function is used to read values from the DOM with APIs like `getBoundingClientRect`, `getComputedStyle` or everything else that triggers layout recalculation. All `measure` calls will get executed after each other and before the first `update` function.
+
+The return value of `measure` is available in it's corresponding `update` function. Errors in `measure` will get caught and replace the return value. 
+
+### `function update (val: any) : void`
+
+The `update` function is the right place to update the DOM. It will be called with the result of `measure` or any `Error` that could have occured in `measure`.
 
 ---
 
@@ -146,4 +161,4 @@ I made this mini library to simplify creating performant data visualisations. I 
 
 * [Browser Rendering Optimizations for Frontend Development](https://scotch.io/tutorials/browser-rendering-optimizations-for-frontend-development)
 * [Avoid Large, Complex Layouts and Layout Thrashing](https://developers.google.com/web/fundamentals/performance/rendering/avoid-large-complex-layouts-and-layout-thrashing)
-* [FastDOM](https://github.com/wilsonpage/fastdom)
+* [FastDOM - Eliminates layout thrashing by batching DOM measurement and mutation tasks](https://github.com/wilsonpage/fastdom)

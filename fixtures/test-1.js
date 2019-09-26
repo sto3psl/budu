@@ -1,4 +1,4 @@
-import schedule from '../src/'
+import schedule from '../src/index.js'
 
 export default function callSchedule (calls) {
   schedule({

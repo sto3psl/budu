@@ -1,8 +1,8 @@
 import test from 'ava'
-import schedule from './index'
+import schedule from './index.js'
 import sinon from 'sinon'
-import callSchedule from '../fixtures/test-1'
-import callSchedule2 from '../fixtures/test-2'
+import callSchedule from '../fixtures/test-1.js'
+import callSchedule2 from '../fixtures/test-2.js'
 
 global.requestAnimationFrame = require('raf')
 
@@ -15,7 +15,7 @@ test.after(t => {
 })
 
 test('should call all measure calls before all update calls', t => {
-  let calls = []
+  const calls = []
 
   schedule({
     measure: () => calls.push(1),
@@ -33,7 +33,7 @@ test('should call all measure calls before all update calls', t => {
 })
 
 test('should handle missing functions', t => {
-  let calls = []
+  const calls = []
 
   schedule({
     update: () => calls.push(2)
@@ -48,7 +48,7 @@ test('should handle missing functions', t => {
 })
 
 test('should work in loops', t => {
-  let calls = []
+  const calls = []
 
   for (let index = 0; index < 5; index++) {
     schedule({
@@ -75,7 +75,7 @@ test('update should be called with the return value of measure', t => {
 })
 
 test('errors should get catched', t => {
-  let calls = []
+  const calls = []
 
   schedule({
     measure: () => calls.push(1),
